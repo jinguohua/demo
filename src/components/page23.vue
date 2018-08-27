@@ -6,7 +6,7 @@
       </el-input>
     </div>
     <div>
-      <page23-table :lists= "lists"></page23-table>
+      <page23-table :lists= "lists" v-on:playthis='playthiss'></page23-table>
     </div>
   </div>
 </template>
@@ -33,7 +33,11 @@ export default {
         datas = data.data.info;
         this.lists = datas
       }).catch((param)=>{
+
       })
+    },
+    playthiss(data){
+      this.$emit('playthisa',data)
     }
   },
   watch: {

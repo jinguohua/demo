@@ -26,9 +26,7 @@
         </template>
         </el-table-column>
     </el-table>
-    <audio ref="audio" controls="controls">
-        <source v-bind:src="lsrc"  >
-    </audio>
+    
     </div>
 </template>
 
@@ -49,15 +47,11 @@ import audioA from './audio'
         plays(index,row) {
             axios.get("/kg/yy/index.php?r=play/getdata&hash="+row.hash)
                 .then((data)=>{
-                    debugger
-                    this.$refs.audio.src = data.data.data.play_url;
+                    this.src = data.data.data.play_url;
+                    this.$emit('playthis',this.src)
                 }).catch((data)=>{
 
             })
-        },
-        autoplay() {
-            var audio = document.getElementById("audio");
-            audio.play()
         }
     },
     computed: {
@@ -68,15 +62,15 @@ import audioA from './audio'
             return this.src;
         }
     },
-    watch: {
-        src: {
+    // watch: {
+    //     src: {
             
-      handler: function (val, oldVal) { 
-          debugger
-       },
-      deep: true
-    }
-    }
+    //   handler: function (val, oldVal) { 
+    //       debugger
+    //    },
+    //   deep: true
+    // }
+    // }
   }
   
 </script>
